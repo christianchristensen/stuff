@@ -1,0 +1,52 @@
+8
+
+dir
+39
+http://svn.raibledesigns.com/svn/ajax/trunk/gwt-autocomplete/src/main/webapp/WEB-INF
+http://svn.raibledesigns.com/svn/ajax
+
+
+
+2009-06-02T16:45:36.633403Z
+38
+mraible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+480ee5db-bf5f-0410-956b-ce1a9c198ed7
+
+urlrewrite.xml
+file
+
+
+
+
+2009-06-04T13:18:30.000000Z
+6b9cf4cc59e8aa40be52f2f4af73ff23
+2009-06-02T16:45:36.633403Z
+38
+mraible
+
+web.xml
+file
+41
+
+
+
+2009-06-04T13:31:29.000000Z
+e1ea56b7aa3bbd18f4106e6f6b5a7ddf
+2009-06-04T13:33:04.031102Z
+41
+mraible
+

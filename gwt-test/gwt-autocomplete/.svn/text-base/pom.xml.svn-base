@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.appfuse</groupId>
+    <artifactId>gwt-autocomplete</artifactId>
+    <packaging>war</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>GWT Autocomplete Example</name>
+
+    <build>
+        <defaultGoal>install</defaultGoal>
+        <plugins>
+            <plugin>
+                <artifactId>maven-eclipse-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-idea-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <downloadSources>true</downloadSources>
+                    <downloadJavadocs>true</downloadJavadocs>
+                    <dependenciesAsLibraries>true</dependenciesAsLibraries>
+                    <useFullNames>false</useFullNames>
+                </configuration>
+            </plugin>
+            <!--  configure the GWT-Maven plugin -->
+            <plugin>
+                <groupId>com.totsp.gwt</groupId>
+                <artifactId>maven-googlewebtoolkit2-plugin</artifactId>
+                <version>2.0-beta26</version>
+                <configuration>
+                    <compileTargets>
+                        <value>org.appfuse.Autocomplete</value>
+                    </compileTargets>
+                    <runTarget>org.appfuse.Autocomplete/Autocomplete.html</runTarget>
+                    <logLevel>INFO</logLevel>
+                    <style>OBF</style>
+                    <noServer>false</noServer>
+                    <extraJvmArgs>-Xmx512m</extraJvmArgs>
+                    <gwtVersion>${gwtVersion}</gwtVersion>
+                    <testFilter>*GwtTestSuite.java</testFilter>
+                    <testSkip>${skipTests}</testSkip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- <goal>mergewebxml</goal>-->
+                            <!-- <goal>i18n</goal>-->
+                            <goal>compile</goal>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--  Use the dependency plugin to unpack gwt-dev-PLATFORM-libs.zip -->
+            <!--
+                   (this is a replacement for the old "automatic" mode - useful if you
+                   don't have GWT installed already, or you just want a maven way to
+                   handle gwt deps)
+               -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.google.gwt</groupId>
+                                    <artifactId>gwt-dev</artifactId>
+                                    <version>${gwtVersion}</version>
+                                    <classifier>${platform}-libs</classifier>
+                                    <type>zip</type>
+                                    <overWrite>false</overWrite>
+                                    <outputDirectory>
+                                        ${settings.localRepository}/com/google/gwt/gwt-dev/${gwtVersion}
+                                    </outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <webappDirectory>
+                        ${project.build.directory}/${project.build.finalName}/org.appfuse.Autocomplete
+                    </webappDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+                <version>6.1.14</version>
+                <configuration>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                        <baseResource implementation="org.mortbay.resource.ResourceCollection">
+                            <resourcesAsCSV>
+                                ${basedir}/src/main/webapp,
+                                ${project.build.directory}/${project.build.finalName}/org.appfuse.Autocomplete
+                            </resourcesAsCSV>
+                        </baseResource>
+                    </webAppConfig>
+                    <connectors>
+                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+                            <port>8888</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                    <scanIntervalSeconds>3</scanIntervalSeconds>
+                    <scanTargets>
+                        <scanTarget>${basedir}/src/main/resources</scanTarget>
+                        <scanTarget>${basedir}/src/main/webapp/WEB-INF</scanTarget>
+                        <scanTarget>
+                            ${project.build.directory}/${project.build.finalName}/org.appfuse.Autocomplete
+                        </scanTarget>
+                    </scanTargets>
+                </configuration>
+            </plugin>
+            <!--  tell the compiler we can use 1.5 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+            <!-- Exclude GwtTest tests since they don't run with mvn test -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*GwtTest*.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <distributionManagement>
+			<repository>
+			 	  <id>appfuse-releases</id>
+				  <name>AppFuse Release Repository</name>
+				  <url>http://oss.sonatype.org/content/repositories/appfuse-releases</url>
+			</repository>
+			<snapshotRepository>
+			    <id>appfuse-snapshots</id>
+			    <name>AppFuse Snapshot Repository</name>
+			    <url>http://oss.sonatype.org/content/repositories/appfuse-snapshots</url>
+			</snapshotRepository>
+    </distributionManagement>
+
+    <dependencies>
+        <!--  GWT deps (from central repo) -->
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-servlet</artifactId>
+            <version>${gwtVersion}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwtVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwtVersion}</version>
+            <classifier>${platform}-libs</classifier>
+            <type>zip</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwtVersion}</version>
+            <classifier>${platform}</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.tuckey</groupId>
+            <artifactId>urlrewritefilter</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!--  test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <!--  convenience to define GWT version in one place -->
+    <properties>
+        <gwtVersion>1.6.4</gwtVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--  profiles (with activation per platform) -->
+    <profiles>
+        <profile>
+            <id>gwt-dev-windows</id>
+            <properties>
+                <platform>windows</platform>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <os>
+                    <family>Windows</family>
+                </os>
+            </activation>
+        </profile>
+        <profile>
+            <id>gwt-dev-mac</id>
+            <properties>
+                <platform>mac</platform>
+            </properties>
+            <activation>
+                <os>
+                    <family>mac</family>
+                </os>
+            </activation>
+        </profile>
+        <profile>
+            <id>gwt-dev-linux</id>
+            <properties>
+                <platform>linux</platform>
+            </properties>
+            <activation>
+                <os>
+                    <name>Linux</name>
+                </os>
+            </activation>
+        </profile>
+    </profiles>
+</project>

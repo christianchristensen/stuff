@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/ajax/!svn/ver/38/trunk/gwt-autocomplete/src/main/webapp/WEB-INF
+END
+urlrewrite.xml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/ajax/!svn/ver/38/trunk/gwt-autocomplete/src/main/webapp/WEB-INF/urlrewrite.xml
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/ajax/!svn/ver/41/trunk/gwt-autocomplete/src/main/webapp/WEB-INF/web.xml
+END

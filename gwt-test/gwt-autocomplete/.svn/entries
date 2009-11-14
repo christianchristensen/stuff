@@ -1,0 +1,55 @@
+8
+
+dir
+39
+http://svn.raibledesigns.com/svn/ajax/trunk/gwt-autocomplete
+http://svn.raibledesigns.com/svn/ajax
+
+
+
+2009-06-03T15:53:17.979457Z
+39
+mraible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+480ee5db-bf5f-0410-956b-ce1a9c198ed7
+
+src
+dir
+
+pom.xml
+file
+41
+
+
+
+2009-06-04T13:28:58.000000Z
+efc6b34604e2aab7b70065296e27f7b7
+2009-06-04T13:33:04.031102Z
+41
+mraible
+
+README.txt
+file
+
+
+
+
+2009-06-04T13:18:30.000000Z
+245a9bd9c191bcd8db270ac637624164
+2009-06-02T16:45:36.633403Z
+38
+mraible
+
