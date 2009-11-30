@@ -1,0 +1,55 @@
+8
+
+dir
+39
+http://svn.raibledesigns.com/svn/ajax/trunk/gwt-autocomplete/src/main/java/org/appfuse/client
+http://svn.raibledesigns.com/svn/ajax
+
+
+
+2009-06-03T15:53:17.979457Z
+39
+mraible
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+480ee5db-bf5f-0410-956b-ce1a9c198ed7
+
+Autocomplete.java
+file
+
+
+
+
+2009-06-04T13:18:30.000000Z
+638f3f74a197cc48cc21de19dd472a17
+2009-06-03T15:53:17.979457Z
+39
+mraible
+
+widget
+dir
+
+AutoSuggestPage.java
+file
+
+
+
+
+2009-06-04T13:18:30.000000Z
+26843eff2e831c78f5d0720d6b2506fa
+2009-06-03T15:53:17.979457Z
+39
+mraible
+

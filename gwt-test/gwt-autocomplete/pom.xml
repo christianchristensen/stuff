@@ -8,7 +8,35 @@
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>GWT Autocomplete Example</name>
+	
+	  <pluginRepositories>
+	    <pluginRepository>
+	      <id>central</id>
+	      <name>Maven Plugin Repository</name>
+	      <url>http://repo1.maven.org/maven2</url>
+	      <layout>default</layout>
+	      <snapshots>
+	        <enabled>false</enabled>
+	      </snapshots>
+	      <releases>
+	        <updatePolicy>never</updatePolicy>
+	      </releases>
+	    </pluginRepository>
+	    <pluginRepository>
+	      <id>other</id>
+	      <name>Other Plugin</name>
+	      <url>http://gwt-maven.googlecode.com/svn/trunk/mavenrepo</url>
+	      <layout>default</layout>
+	      <snapshots>
+	        <enabled>false</enabled>
+	      </snapshots>
+	      <releases>
+	        <updatePolicy>never</updatePolicy>
+	      </releases>
+	    </pluginRepository>
 
+	  </pluginRepositories>
+	
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
@@ -51,17 +79,17 @@
                 <executions>
                     <execution>
                         <goals>
-                            <!-- <goal>mergewebxml</goal>-->
+                          <!-- <goal>mergewebxml</goal>-->
                             <!-- <goal>i18n</goal>-->
                             <goal>compile</goal>
                             <goal>test</goal>
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+              </plugin>
             <!--  Use the dependency plugin to unpack gwt-dev-PLATFORM-libs.zip -->
             <!--
-                   (this is a replacement for the old "automatic" mode - useful if you
+            (this is a replacement for the old "automatic" mode - useful if you
                    don't have GWT installed already, or you just want a maven way to
                    handle gwt deps)
                -->

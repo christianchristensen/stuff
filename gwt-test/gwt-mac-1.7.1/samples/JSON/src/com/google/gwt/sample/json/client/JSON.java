@@ -13,7 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.google.gwt.sample.json.client;
+package src.com.google.gwt.sample.json.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -87,8 +87,8 @@ public class JSON {
    * http://api.search.yahoo.com/ImageSearchService/V1/imageSearch?appid=YahooDemo
    * &query=potato&results=2&output=json
    */
-  private static final String DEFAULT_SEARCH_URL = GWT.getModuleBaseURL()
-      + "search-results.js";
+  private static final String DEFAULT_SEARCH_URL = "http://localhost:8081/drupal-6.14/json.json";//GWT.getModuleBaseURL()
+      //+ "search-results.js";
 
   /*
    * Text displayed on the fetch button when we are in a default state.

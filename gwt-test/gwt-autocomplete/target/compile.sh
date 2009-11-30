@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export CLASSPATH="/Users/chris/.m2/repository/com/google/gwt/gwt-user/1.6.4/gwt-user-1.6.4.jar":"/Users/chris/.m2/repository/com/google/gwt/gwt-dev/1.6.4/gwt-dev-1.6.4-mac.jar":"/Users/chris/Documents/Dropbox/dev/github/stuff/gwt-test/gwt-autocomplete/src/main/java":"/Users/chris/Documents/Dropbox/dev/github/stuff/gwt-test/gwt-autocomplete/src/main/resources":"/Users/chris/Documents/Dropbox/dev/github/stuff/gwt-test/gwt-autocomplete/classes":"/Users/chris/Documents/Dropbox/dev/github/stuff/gwt-test/gwt-autocomplete/target/classes":"/Users/chris/.m2/repository/org/tuckey/urlrewritefilter/3.1.0/urlrewritefilter-3.1.0.jar"
+
+"/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/bin/java" -XstartOnFirstThread -Xmx512m -cp $CLASSPATH  com.google.gwt.dev.GWTCompiler  -gen /Users/chris/Documents/Dropbox/dev/github/stuff/gwt-test/gwt-autocomplete/target/.generated -logLevel INFO -style OBF -out /Users/chris/Documents/Dropbox/dev/github/stuff/gwt-test/gwt-autocomplete/target/gwt-autocomplete-1.0-SNAPSHOT org.appfuse.Autocomplete
